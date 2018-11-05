@@ -5,8 +5,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="GraphQL" Version="2.3.0" />
+    <PackageReference Include="GraphQL.Authorization" Version="2.0.27" />
+    <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="GraphQL.Server.Transports.WebSockets" Version="3.2.0" />
+    <PackageReference Include="GraphQL.Server.Ui.GraphiQL" Version="3.2.0" />
+    <PackageReference Include="GraphQL.Server.Ui.Playground" Version="3.2.0" />
+    <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="3.2.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="6.5.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
+    <PackageReference Include="System.Reactive" Version="4.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ApiSchema\Enums\" />
+    <Folder Include="ApiSchema\Types\EntryTypes\" />
+    <Folder Include="ApiSchema\Types\ResponseMessageTypes\" />
+    <Folder Include="ApiSchema\Types\VarietalTypes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SommOS.Entries.Infrastructure\SommOS.Entries.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

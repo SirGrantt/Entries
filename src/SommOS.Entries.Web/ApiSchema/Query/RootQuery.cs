@@ -8,5 +8,8 @@ namespace SommOS.Entries.Web.ApiSchema.Query
 {
     public class RootQuery : ObjectGraphType<object>
     {
+        public RootQuery()
+        {
+        }
     }
 }
