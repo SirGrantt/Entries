@@ -24,11 +24,13 @@ namespace SommOS.Entries.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
+        public IHostingEnvironment _hostingEnvironment;
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -36,7 +38,9 @@ namespace SommOS.Entries.Web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<EntriesContext>(o => o.UseNpgsql("Server=localhost;User Id=pgadmin;Password=pgpass;Database=entries;SearchPath=public"));
+            var connectionString = Configuration["ConnectionStrings:SommOSEntries"];
+
+            services.AddDbContext<EntriesContext>(o => o.UseNpgsql(connectionString));
 
             services.AddScoped<IDependencyResolver>(
                c => new FuncDependencyResolver(type =>
