@@ -19,5 +19,12 @@ namespace SommOS.Entries.Core.Entities
         public DateTimeOffset DateAdded { get; set; }
         public DateTimeOffset LastModified { get; set; }
         public EntryLabelEntity WineLabel { get; set; }
+
+        public EntryEntity(string wineLabelBase64)
+        {
+            Tags = new List<string>();
+            Varietals = new List<VarietalEntity>();
+            WineLabel.Image = Encoding.ASCII.GetBytes(wineLabelBase64);
+        }
     }
 }

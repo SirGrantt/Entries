@@ -7,8 +7,10 @@ namespace SommOS.Entries.Core.Interfaces
 {
     public interface IEntryRepository
     {
-        List<EntryEntity> GetEntries(Guid userId);
         EntryEntity GetEntryById(Guid entryId);
+        List<EntryEntity> GetEntries(Guid userId);
+        List<VarietalEntity> GetEntryVarietals(Guid entryId);
+        byte[] GetEntryWineLabel(Guid entryId);
         void AddEntry(EntryEntity entry);
         void UpdateEntry(EntryEntity entry);
     }

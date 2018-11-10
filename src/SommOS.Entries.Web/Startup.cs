@@ -16,9 +16,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SommOS.Entries.Core.Entities;
+using SommOS.Entries.Core.Interfaces;
 using SommOS.Entries.Infrastructure.DbContexts;
+using SommOS.Entries.Infrastructure.Repositories;
 using SommOS.Entries.Web.ApiSchema;
+using SommOS.Entries.Web.ApiSchema.Types.EntryTypes;
 using SommOS.Entries.Web.Auth;
+using SommOS.Entries.Web.Models;
+using SommOS.Entries.Web.ServiceInterfaces;
+using SommOS.Entries.Web.Services;
 
 namespace SommOS.Entries.Web
 {
@@ -41,6 +48,9 @@ namespace SommOS.Entries.Web
             var connectionString = Configuration["ConnectionStrings:SommOSEntries"];
 
             services.AddDbContext<EntriesContext>(o => o.UseNpgsql(connectionString));
+            services.AddScoped<IEntryRepository, EntryRepository>();
+            services.AddScoped<IEntryService, EntryService>();
+            services.AddScoped<EntryType>();
 
             services.AddScoped<IDependencyResolver>(
                c => new FuncDependencyResolver(type =>
@@ -79,6 +89,20 @@ namespace SommOS.Entries.Web
             app.UseCookiePolicy();
 
             app.UseMvc();
+        }
+
+        private void ConfigureAutoMapper()
+        {
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<VarietalEntity, Varietal>();
+                cfg.CreateMap<Varietal, VarietalEntity>();
+
+                cfg.CreateMap<EntryEntity, Entry>()
+                .ForMember("wineLabel", opt => opt.ResolveUsing(x => Convert.ToBase64String(x.WineLabel.Image)));
+                cfg.CreateMap<Entry, EntryEntity>()
+                .ForCtorParam("wineLabelBase64", opt => opt.MapFrom(src => src.WineLabel));
+            });
         }
     }
 }
