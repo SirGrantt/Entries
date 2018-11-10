@@ -26,9 +26,7 @@
 
   <ItemGroup>
     <Folder Include="ApiSchema\Enums\" />
-    <Folder Include="ApiSchema\Types\EntryTypes\" />
     <Folder Include="ApiSchema\Types\ResponseMessageTypes\" />
-    <Folder Include="ApiSchema\Types\VarietalTypes\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

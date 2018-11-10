@@ -9,7 +9,7 @@ namespace SommOS.Entries.Web.ServiceInterfaces
     public interface IEntryService
     {
         string GetEntryWineLabelBase64(Guid entryId);
-        List<Entry> GetUserEntries(Guid userId);
+        Task<List<Entry>> GetUserEntries(Guid userId);
         List<Varietal> GetEntryVarietals(Guid entryId);
     }
 }

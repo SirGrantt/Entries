@@ -31,7 +31,7 @@ namespace SommOS.Entries.Web.ApiSchema.Types.EntryTypes
             });
             Field<StringGraphType>("wineLabel", resolve: context =>
             {
-                return entryService.GetEntryWineLabelBase64(context.Source.Id);
+                return entryService.GetEntryWineLabelBase64 (context.Source.Id);
             });
         }
     }

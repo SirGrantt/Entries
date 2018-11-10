@@ -38,7 +38,7 @@ namespace SommOS.Entries.Web.Services
             return base64;
         }
 
-        public List<Entry> GetUserEntries(Guid userId)
+        public Task<List<Entry>> GetUserEntries(Guid userId)
         {
             List<Entry> mapped = new List<Entry>();
             var entries = _entryRepository.GetEntries(userId);
@@ -48,7 +48,7 @@ namespace SommOS.Entries.Web.Services
                 mapped.Add(Mapper.Map<Entry>(e));
             }
 
-            return mapped;
+            return Task.FromResult(mapped);
         }
     }
 }
